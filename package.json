@@ -1,0 +1,14 @@
+{
+    "name": "metadata-server",
+    "version": "1.0.0",
+    "description": "Serves Solana token metadata and images with CORS for Explorer",
+    "main": "index.js",
+    "type": "module",
+    "scripts": {
+      "start": "node index.js"
+    },
+    "dependencies": {
+      "express": "^4.18.2"
+    }
+}
+  
