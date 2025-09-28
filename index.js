@@ -5,9 +5,6 @@ import { fileURLToPath } from "url";
 
 const app = express();
 
-// CORS: allow all origins
-app.use(cors());
-
 // Enable JSON parsing if needed
 app.use(express.json());
 
@@ -15,11 +12,15 @@ app.use(express.json());
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+// CORS: allow all origins **before static files**
+app.use(cors());
+
 // Serve static files from /public
 app.use(express.static(path.join(__dirname, "public")));
 
-// Example: explicitly serve token.json
+// Explicit route for token.json (optional, but good for CORS safety)
 app.get("/token.json", (req, res) => {
+  res.setHeader("Access-Control-Allow-Origin", "*"); // make sure CORS is set
   res.sendFile(path.join(__dirname, "public", "token.json"));
 });
 
